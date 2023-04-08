@@ -4,7 +4,7 @@
 
 ## 💻 Projeto
 
-Simples Rest API feita em GO
+Simples Rest API feita em Go
 
 ## 💡 Endpoints
 
