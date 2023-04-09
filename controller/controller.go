@@ -22,7 +22,6 @@ func GetAlbums(c *gin.Context) {
 }
 
 func GetAlbumsByID(c *gin.Context) {
-
 	id := c.Param("id")
 
 	for _, x := range albums {
@@ -36,9 +35,7 @@ func GetAlbumsByID(c *gin.Context) {
 }
 
 func PostAlbums(c *gin.Context) {
-
 	var newAlbum models.Album
-
 	reqBody, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error reading request body: %v", err)
@@ -53,12 +50,12 @@ func PostAlbums(c *gin.Context) {
 		return
 	}
 
+	newAlbum.ID = fmt.Sprintf("%d", len(albums)+1)
 	albums = append(albums, newAlbum)
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
 func PutAlbums(c *gin.Context) {
-
 	id := c.Param("id")
 
 	var updatedAlbum models.Album
@@ -89,7 +86,6 @@ func PutAlbums(c *gin.Context) {
 }
 
 func DeleteAlbums(c *gin.Context) {
-	
 	id := c.Param("id")
 
 	for i, x := range albums {
