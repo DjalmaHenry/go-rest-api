@@ -56,3 +56,49 @@ func PostAlbums(c *gin.Context) {
 	albums = append(albums, newAlbum)
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
+
+func PutAlbums(c *gin.Context) {
+
+	id := c.Param("id")
+
+	var updatedAlbum models.Album
+
+	reqBody, err := ioutil.ReadAll(c.Request.Body)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error reading request body: %v", err)
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	err = json.Unmarshal(reqBody, &updatedAlbum)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing request body: %v", err)
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	for i, x := range albums {
+		if x.ID == id {
+			albums[i] = updatedAlbum
+			c.IndentedJSON(http.StatusOK, updatedAlbum)
+			return
+		}
+	}
+
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+}
+
+func DeleteAlbums(c *gin.Context) {
+	
+	id := c.Param("id")
+
+	for i, x := range albums {
+		if x.ID == id {
+			albums = append(albums[:i], albums[i+1:]...)
+			c.IndentedJSON(http.StatusOK, gin.H{"message": "album deleted"})
+			return
+		}
+	}
+
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+}
