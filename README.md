@@ -23,14 +23,24 @@ Simples Rest API feita em Go
       <td>Retorna todos os albums cadastrados</td>
     </tr>
     <tr>
+      <td>GET</td>
+      <td>/albums/:id</td>
+      <td>Retorna um album em específico</td>
+    </tr>
+    <tr>
       <td>POST</td>
       <td>/albums</td>
       <td>Cria um novo album</td>
     </tr>
     <tr>
-      <td>GET</td>
+      <td>PUT</td>
       <td>/albums/:id</td>
-      <td>Retorna um album em específico</td>
+      <td>Atualiza um album específico</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/albums/:id</td>
+      <td>Deleta um album específico</td>
     </tr>
   </tbody>
 </table>
