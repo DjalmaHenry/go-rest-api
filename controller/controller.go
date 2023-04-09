@@ -74,6 +74,8 @@ func PutAlbums(c *gin.Context) {
 		return
 	}
 
+	updatedAlbum.ID = id
+
 	for i, x := range albums {
 		if x.ID == id {
 			albums[i] = updatedAlbum
