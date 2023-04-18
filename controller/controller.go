@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var albums = []models.Album{
+var albums = []models.Album {
 	{ID: "1", Title: "RAIZ", Artist: "João Gomes", Price: 56.99},
 	{ID: "2", Title: "LITTLE LOVE", Artist: "MC Cabelinho", Price: 17.99},
 	{ID: "3", Title: "Modo Repeat", Artist: "Felipe Amorim", Price: 39.99},
